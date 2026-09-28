@@ -1,0 +1,533 @@
+metadata:
+  artifact_id: fitakha.rules_library
+  version: 1.1.0
+  release_date: '2026-08-31'
+  taxonomy_version: 1.2.0
+  rules_schema_version: 1.1.0
+policy:
+  chronic_condition_default: warn/modify/log; not blanket block
+  acute_red_flag_default: stop_and_refer
+  coach_override: allowed only where rule.override_policy permits; always logged
+  clinical_validation: Rules are product-policy specifications and require clinical/exercise-professional
+    validation before production use.
+rules:
+- rule_id: RULE-001
+  name: Acute red flag safety gate
+  domain: safety
+  priority: 1000
+  when: health.red_flags intersects taxonomy.health.red_flags
+  action: stop_and_refer
+  severity: critical
+  override_policy: non_overridable
+  message_template: Do not generate a workout while an acute red-flag symptom is reported.
+    Seek appropriate medical evaluation.
+  log_event: red_flag_stop
+  active: true
+- rule_id: RULE-002
+  name: Severe acute pain safety gate
+  domain: safety
+  priority: 995
+  when: any pain_site.acute_or_chronic == acute AND pain_0_10 >= 8
+  action: stop_and_refer
+  severity: critical
+  override_policy: non_overridable
+  message_template: Severe acute pain was reported. Do not generate a workout until
+    appropriately evaluated.
+  log_event: red_flag_stop
+  active: true
+- rule_id: RULE-010
+  name: Hypertension lying-position caution
+  domain: health
+  priority: 900
+  when: condition('hypertension').status in ['active','controlled','unknown'] AND
+    exercise.positions intersects ['supine','prone','side_lying']
+  action: warn
+  severity: caution
+  override_policy: coach_override
+  message_template: 'Fitakha policy flag: lying-position exercise with reported hypertension.
+    Review appropriateness with the user/coach and follow individualized clinical
+    guidance.'
+  log_event: warning_presented
+  active: true
+  notes: This is a configurable Fitakha caution, not a universal medical prohibition.
+- rule_id: RULE-011
+  name: Hypertension high-strain caution
+  domain: health
+  priority: 905
+  when: condition('hypertension') exists AND (exercise.caution_tags contains 'high_strain_caution'
+    OR exercise.caution_tags contains 'breath_holding_caution')
+  action: warn
+  severity: high_caution
+  override_policy: coach_override
+  message_template: Reported hypertension plus a high-strain or breath-holding-prone
+    exercise. Use conservative loading/cues and individualized guidance.
+  log_event: warning_presented
+  active: true
+- rule_id: RULE-012
+  name: Osteoporosis myofascial caution
+  domain: health
+  priority: 890
+  when: condition('osteoporosis') exists AND exercise.modality == 'myofascial'
+  action: warn
+  severity: caution
+  override_policy: coach_override
+  message_template: 'Fitakha policy flag: myofascial technique with reported osteoporosis.
+    Review pressure, technique, and appropriateness; use individualized guidance.'
+  log_event: warning_presented
+  active: true
+- rule_id: RULE-013
+  name: Arthritis myofascial caution
+  domain: health
+  priority: 885
+  when: (condition('osteoarthritis') exists OR condition('rheumatoid_arthritis') exists)
+    AND exercise.modality == 'myofascial'
+  action: warn
+  severity: caution
+  override_policy: coach_override
+  message_template: 'Fitakha policy flag: myofascial technique with reported arthritis.
+    Review symptom irritability, pressure, and technique.'
+  log_event: warning_presented
+  active: true
+- rule_id: RULE-014
+  name: Bone health loaded spinal flexion caution
+  domain: health
+  priority: 910
+  when: condition('osteoporosis') exists AND exercise.caution_tags contains 'loaded_spinal_flexion_caution'
+  action: warn
+  severity: high_caution
+  override_policy: coach_override
+  message_template: Reported osteoporosis and loaded spinal flexion/rotation caution.
+    Consider a lower-risk alternative and individualized guidance.
+  log_event: warning_presented
+  active: true
+- rule_id: RULE-015
+  name: Arthritis symptom irritability modifier
+  domain: health
+  priority: 850
+  when: (condition('osteoarthritis') exists OR condition('rheumatoid_arthritis') exists)
+    AND any pain_0_10 >= 5
+  action: modify
+  severity: caution
+  override_policy: coach_override
+  message_template: Joint symptoms are elevated. Reduce load/range/volume or substitute
+    a less provocative movement.
+  log_event: session_modified
+  active: true
+- rule_id: RULE-016
+  name: Post-surgical restriction review
+  domain: health
+  priority: 940
+  when: any surgery.clearance_status in ['unknown','restricted']
+  action: require_coach_review
+  severity: high_caution
+  override_policy: clinical_clearance_required
+  message_template: A post-surgical restriction/unknown clearance status is recorded.
+    Review restrictions before prescribing.
+  log_event: warning_presented
+  active: true
+- rule_id: RULE-017
+  name: Asthma readiness caution
+  domain: health
+  priority: 820
+  when: condition('asthma') exists AND recovery.readiness_0_100 < 40
+  action: modify
+  severity: caution
+  override_policy: user_acknowledgement
+  message_template: Readiness is low with asthma history. Favor a lower-intensity
+    session and ensure the user follows their action plan.
+  log_event: session_modified
+  active: true
+- rule_id: RULE-018
+  name: Diabetes long-session fuel/hydration reminder
+  domain: health
+  priority: 780
+  when: condition('diabetes') exists AND request.session_duration_min >= 60
+  action: warn
+  severity: caution
+  override_policy: user_acknowledgement
+  message_template: 'Longer session with diabetes history: follow individualized glucose,
+    medication, hydration, and fueling guidance.'
+  log_event: warning_presented
+  active: true
+- rule_id: RULE-030
+  name: Cycle tracking opt-in only
+  domain: female_health
+  priority: 700
+  when: female_health.cycle_tracking_opt_in == false
+  action: log_only
+  severity: info
+  override_policy: not_applicable
+  message_template: Cycle phase is not used because the user has not opted in to cycle
+    tracking.
+  log_event: rule_triggered
+  active: true
+- rule_id: RULE-031
+  name: Menstrual symptom-led intensity modifier
+  domain: female_health
+  priority: 760
+  when: female_health.life_phase == 'menstruating_years' AND cycle_symptoms intersects
+    ['fatigue','heavy_bleeding','cramps','migraine']
+  action: modify
+  severity: caution
+  override_policy: user_acknowledgement
+  message_template: Current menstrual symptoms may warrant lower intensity, less volume,
+    more rest, or a recovery-focused session based on preference and tolerance.
+  log_event: session_modified
+  active: true
+- rule_id: RULE-032
+  name: Cycle phase is non-deterministic
+  domain: female_health
+  priority: 650
+  when: female_health.cycle_phase not in ['unknown','not_tracking','not_applicable']
+  action: log_only
+  severity: info
+  override_policy: not_applicable
+  message_template: Cycle phase may inform context but does not automatically raise
+    or lower training intensity; current symptoms and readiness take precedence.
+  log_event: rule_triggered
+  active: true
+- rule_id: RULE-033
+  name: Pregnancy stage review
+  domain: female_health
+  priority: 930
+  when: female_health.life_phase == 'pregnancy'
+  action: require_coach_review
+  severity: high_caution
+  override_policy: clinical_clearance_required
+  message_template: Pregnancy is recorded. Use pregnancy-appropriate programming,
+    symptom monitoring, and individualized medical/coach guidance.
+  log_event: warning_presented
+  active: true
+- rule_id: RULE-034
+  name: Pregnancy prolonged lying caution
+  domain: female_health
+  priority: 920
+  when: female_health.life_phase == 'pregnancy' AND female_health.pregnancy_stage
+    in ['second_trimester','third_trimester'] AND exercise.positions contains 'supine'
+  action: warn
+  severity: high_caution
+  override_policy: coach_override
+  message_template: 'Later pregnancy plus supine exercise: review duration, comfort,
+    symptoms, and individualized guidance; modify position if needed.'
+  log_event: warning_presented
+  active: true
+- rule_id: RULE-035
+  name: Pregnancy urgent symptom gate
+  domain: safety
+  priority: 1000
+  when: female_health.life_phase == 'pregnancy' AND health.red_flags intersects ['pregnancy_heavy_bleeding','pregnancy_fluid_leak','syncope_or_near_syncope','severe_shortness_of_breath']
+  action: stop_and_refer
+  severity: critical
+  override_policy: non_overridable
+  message_template: Urgent pregnancy-related symptom reported. Do not generate a workout;
+    seek appropriate medical evaluation.
+  log_event: red_flag_stop
+  active: true
+- rule_id: RULE-036
+  name: Early postpartum review
+  domain: female_health
+  priority: 935
+  when: female_health.life_phase == 'postpartum' AND postpartum_stage in ['0_6_weeks','7_12_weeks']
+  action: require_coach_review
+  severity: high_caution
+  override_policy: clinical_clearance_required
+  message_template: Early postpartum stage recorded. Use a graded return based on
+    healing, symptoms, delivery history, and individualized clinical guidance.
+  log_event: warning_presented
+  active: true
+- rule_id: RULE-037
+  name: Postpartum pelvic floor symptom caution
+  domain: female_health
+  priority: 940
+  when: female_health.life_phase == 'postpartum' AND (health.condition('pelvic_floor_symptoms')
+    exists OR menopause_symptoms contains 'pelvic_floor_symptoms')
+  action: modify
+  severity: high_caution
+  override_policy: coach_override
+  message_template: Pelvic floor symptoms are recorded. Reduce pressure/impact demands
+    and consider specialist guidance.
+  log_event: session_modified
+  active: true
+- rule_id: RULE-038
+  name: Perimenopause sleep-recovery modifier
+  domain: female_health
+  priority: 720
+  when: female_health.life_phase == 'perimenopause' AND menopause_symptoms contains
+    'sleep_disruption'
+  action: score_penalty
+  severity: caution
+  override_policy: not_applicable
+  message_template: Sleep disruption is recorded; reduce scoring for near-maximal/high-fatigue
+    options when recovery is also low.
+  log_event: session_modified
+  active: true
+- rule_id: RULE-039
+  name: Menopause bone-loading preference
+  domain: female_health
+  priority: 610
+  when: female_health.life_phase in ['menopause','postmenopause'] AND NOT condition('osteoporosis').status
+    == 'active'
+  action: score_boost
+  severity: info
+  override_policy: not_applicable
+  message_template: When appropriate, favor progressive resistance, balance, and impact
+    exposure suitable to the individual to support healthy aging goals.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-050
+  name: Low readiness intensity reduction
+  domain: recovery
+  priority: 800
+  when: recovery.readiness_0_100 is not null AND recovery.readiness_0_100 < 35
+  action: modify
+  severity: caution
+  override_policy: user_acknowledgement
+  message_template: Readiness is low. Reduce session intensity/volume and favor technique,
+    mobility, or recovery work.
+  log_event: session_modified
+  active: true
+- rule_id: RULE-051
+  name: Low sleep duration modifier
+  domain: recovery
+  priority: 760
+  when: recovery.sleep_duration_min is not null AND recovery.sleep_duration_min <
+    300
+  action: score_penalty
+  severity: caution
+  override_policy: not_applicable
+  message_template: Very short sleep recorded; penalize high-complexity/high-intensity
+    options.
+  log_event: session_modified
+  active: true
+- rule_id: RULE-052
+  name: HRV below baseline modifier
+  domain: recovery
+  priority: 740
+  when: recovery.hrv_ms and recovery.hrv_baseline_ms are not null AND recovery.hrv_ms
+    < 0.8 * recovery.hrv_baseline_ms
+  action: score_penalty
+  severity: caution
+  override_policy: not_applicable
+  message_template: HRV is materially below the recorded baseline; reduce high-fatigue
+    exercise scores when consistent with the user’s trend.
+  log_event: session_modified
+  active: true
+- rule_id: RULE-053
+  name: High soreness modifier
+  domain: recovery
+  priority: 730
+  when: recovery.soreness_1_5 >= 4
+  action: modify
+  severity: caution
+  override_policy: user_acknowledgement
+  message_template: High soreness is reported. Avoid loading the most affected regions
+    heavily and consider recovery work.
+  log_event: session_modified
+  active: true
+- rule_id: RULE-060
+  name: Never-exercised complexity filter
+  domain: experience
+  priority: 700
+  when: training.experience_level == 'never_exercised' AND exercise.complexity in
+    ['high','very_high']
+  action: exclude
+  severity: caution
+  override_policy: coach_override
+  message_template: High-complexity movement excluded for a never-exercised user unless
+    selected by a coach.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-061
+  name: Beginner impact penalty
+  domain: experience
+  priority: 650
+  when: training.experience_level in ['never_exercised','beginner'] AND exercise.impact_level
+    == 'high'
+  action: score_penalty
+  severity: caution
+  override_policy: not_applicable
+  message_template: High-impact exercise receives a lower score for a beginner unless
+    the goal/context supports it.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-062
+  name: Advanced specificity boost
+  domain: experience
+  priority: 500
+  when: training.experience_level in ['advanced','competitive_athlete'] AND goal('sports_performance')
+    exists
+  action: score_boost
+  severity: info
+  override_policy: not_applicable
+  message_template: 'Advanced athlete with sports-performance goal: increase weighting
+    for relevant power, speed, agility, and sport-conditioning options.'
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-070
+  name: Equipment hard availability filter
+  domain: equipment
+  priority: 900
+  when: exercise.equipment not subset_of request.equipment_available + [none]
+  action: exclude
+  severity: info
+  override_policy: not_applicable
+  message_template: Exercise requires equipment not available for this session.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-071
+  name: Environment fit penalty
+  domain: equipment
+  priority: 450
+  when: request.environment not in exercise.environment_fit
+  action: score_penalty
+  severity: info
+  override_policy: not_applicable
+  message_template: Exercise is less suitable for the selected environment.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-080
+  name: Weight loss session composition
+  domain: goal
+  priority: 520
+  when: goal('weight_loss') exists
+  action: score_boost
+  severity: info
+  override_policy: not_applicable
+  message_template: Favor sustainable full-body resistance plus cardiorespiratory
+    work, calibrated to experience, recovery, duration, and preferences.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-081
+  name: Hypertrophy selection bias
+  domain: goal
+  priority: 520
+  when: goal('hypertrophy') exists
+  action: score_boost
+  severity: info
+  override_policy: not_applicable
+  message_template: Favor loadable exercises with stable technique, adequate range
+    of motion, and manageable fatigue.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-082
+  name: General fitness balance
+  domain: goal
+  priority: 500
+  when: goal('general_fitness') exists
+  action: score_boost
+  severity: info
+  override_policy: not_applicable
+  message_template: Balance movement patterns, cardiorespiratory exposure, mobility,
+    and recovery across the week.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-083
+  name: Event preparation specificity
+  domain: goal
+  priority: 600
+  when: goal('event_preparation') exists AND goal.target_date is not null
+  action: score_boost
+  severity: info
+  override_policy: not_applicable
+  message_template: As the event approaches, increase relevant specificity while respecting
+    progressive load and recovery.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-084
+  name: Movement quality fault match
+  domain: movement_quality
+  priority: 560
+  when: exercise.movement_quality_faults_addressed intersects user.movement_quality_faults
+  action: score_boost
+  severity: info
+  override_policy: not_applicable
+  message_template: Exercise addresses a recorded movement-quality need.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-090
+  name: Self-directed warning acknowledgement
+  domain: programming
+  priority: 950
+  when: relationship.coaching_context == 'self_directed' AND any triggered_rule.action
+    == 'warn'
+  action: warn
+  severity: caution
+  override_policy: user_acknowledgement
+  message_template: Present warnings clearly and record user acknowledgement before
+    the exercise/session is accepted.
+  log_event: warning_acknowledged
+  active: true
+- rule_id: RULE-091
+  name: Coach-directed warning visibility
+  domain: programming
+  priority: 950
+  when: relationship.coaching_context in ['remote_coach','in_person_coach'] AND any
+    triggered_rule.action == 'warn'
+  action: require_coach_review
+  severity: caution
+  override_policy: coach_override
+  message_template: Keep the warning visible to the coach; allow proceed/modify/substitute/cancel
+    with reason logged.
+  log_event: coach_override
+  active: true
+- rule_id: RULE-092
+  name: Coach override audit preservation
+  domain: programming
+  priority: 990
+  when: coach_override exists
+  action: log_only
+  severity: info
+  override_policy: not_applicable
+  message_template: Record the original rule trigger, warning, coach decision, reason,
+    and final exercise choice.
+  log_event: coach_override
+  active: true
+- rule_id: RULE-093
+  name: Short session compound preference
+  domain: programming
+  priority: 420
+  when: request.session_duration_min <= 25
+  action: score_boost
+  severity: info
+  override_policy: not_applicable
+  message_template: For short sessions, favor efficient compound or multi-purpose
+    movements when safe and appropriate.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-094
+  name: Superset density rule
+  domain: programming
+  priority: 430
+  when: request.session_duration_min <= 40 AND goal in ['hypertrophy','general_fitness','weight_loss']
+  action: score_boost
+  severity: info
+  override_policy: not_applicable
+  message_template: Use compatible supersets to improve time efficiency without excessive
+    local fatigue or technique degradation.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-095
+  name: Superset safety constraint
+  domain: programming
+  priority: 870
+  when: set_type == 'superset' AND any member.superset_eligible == false
+  action: exclude
+  severity: caution
+  override_policy: coach_override
+  message_template: At least one exercise is not marked superset-eligible; choose
+    another pairing or straight sets.
+  log_event: recommendation_generated
+  active: true
+- rule_id: RULE-096
+  name: Superset same-muscle fatigue caution
+  domain: programming
+  priority: 680
+  when: set_type == 'superset' AND superset_type not in ['agonist','pre_exhaust','post_exhaust']
+    AND members share primary_muscle AND max(fatigue_cost) == 'high'
+  action: warn
+  severity: caution
+  override_policy: coach_override
+  message_template: This pairing may create excessive local fatigue for the intended
+    superset type. Review order, load, and rest.
+  log_event: warning_presented
+  active: true
