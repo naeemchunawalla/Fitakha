@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Fitakha</title>
+<meta name="description" content="General questions, partnerships and support — get in touch with Fitakha.">
+<link rel="icon" href="assets/images/fitakha-logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand"><img src="assets/images/fitakha-logo.jpg" alt="Fitakha — Ignite What Moves You"></a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="find-your-fit.html">Find Your Fit</a>
+      <a href="workouts.html">Workouts &amp; Learn</a>
+      <a href="find-an-expert.html">Find an Expert</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About Fitakha</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="find-your-fit.html" class="btn btn-secondary btn-sm">Find Your Fit</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Contact Us</div>
+    <h1>Contact Us</h1>
+    <p class="lead">General questions, partnerships and support — we're happy to help you find the right next step.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid grid-2" style="gap:48px; align-items:flex-start;">
+    <div>
+      <h2>Send us a message</h2>
+      <form id="contact-form">
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required>
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-field">
+          <label for="reason">What's this about?</label>
+          <select id="reason" name="reason">
+            <option>General question</option>
+            <option>Find Your Fit / a program</option>
+            <option>Coaching or nutrition inquiry</option>
+            <option>Join as an expert</option>
+            <option>Partnership / press</option>
+            <option>Apparel &amp; shop</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send message</button>
+      </form>
+      <div id="contact-success" class="banner info" style="display:none; margin-top:18px;">
+        <div class="icon">✅</div>
+        <div><h4>Thanks — message received</h4><p>We'll get back to you shortly. If this is urgent or medical in nature, please contact a qualified professional directly.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:20px;">
+        <h3>General &amp; support</h3>
+        <p class="small text-muted">Questions about Find Your Fit, programs, the exercise library or your account.</p>
+        <p class="small"><strong>Email:</strong> hello@fitakha.com</p>
+      </div>
+      <div class="card" style="margin-bottom:20px;">
+        <h3>Coaches &amp; nutritionists</h3>
+        <p class="small text-muted">Want to join our expert directory? Tell us about your credentials and specialties.</p>
+        <p class="small"><strong>Email:</strong> experts@fitakha.com</p>
+      </div>
+      <div class="card">
+        <h3>Partnerships &amp; press</h3>
+        <p class="small text-muted">B2B platform integrations, media inquiries, and collaboration ideas.</p>
+        <p class="small"><strong>Email:</strong> partners@fitakha.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/fitakha-logo.jpg" alt="Fitakha">
+        <p class="small">Ignite What Moves You. Fitness that starts with you — programs, exercises and real support, personalized to your life.</p>
+      </div>
+      <div><h4>Explore</h4>
+        <a href="find-your-fit.html">Find Your Fit</a>
+        <a href="workouts.html#programs">Programs</a>
+        <a href="workouts.html#library">Exercise Library</a>
+        <a href="workouts.html#faqs">FAQs</a>
+      </div>
+      <div><h4>Support</h4>
+        <a href="find-an-expert.html">Coaches</a>
+        <a href="find-an-expert.html">Nutritionists</a>
+        <a href="find-an-expert.html#join">Join as an Expert</a>
+      </div>
+      <div><h4>Company</h4>
+        <a href="about.html">About Fitakha</a>
+        <a href="about.html#team">Our Team</a>
+        <a href="shop.html">Shop</a>
+      </div>
+      <div><h4>Get in touch</h4>
+        <a href="contact.html">Contact Us</a>
+        <a href="https://www.youtube.com/@BeAFitakha" target="_blank" rel="noopener">Be a Fitakha (YouTube)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Fitakha. All rights reserved.</span>
+      <span>Fitakha provides fitness education and guidance; it is not a substitute for professional medical advice.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

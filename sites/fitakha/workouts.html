@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workouts &amp; Learn — Fitakha</title>
+<meta name="description" content="Fitakha programs, a searchable exercise library linked to the Be a Fitakha channel, technique guides and FAQs.">
+<link rel="icon" href="assets/images/fitakha-logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand"><img src="assets/images/fitakha-logo.jpg" alt="Fitakha — Ignite What Moves You"></a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="find-your-fit.html">Find Your Fit</a>
+      <a href="workouts.html" class="active">Workouts &amp; Learn</a>
+      <a href="find-an-expert.html">Find an Expert</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About Fitakha</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="find-your-fit.html" class="btn btn-secondary btn-sm">Find Your Fit</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Workouts &amp; Learn</div>
+    <h1>Workouts &amp; Learn</h1>
+    <p class="lead">Fitness programs, a searchable exercise library, Be a Fitakha videos, technique guides and FAQs — exercise instruction and practical answers, together in one place.</p>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="section" id="programs">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Programs</span>
+      <h2>Organized by goal, experience, duration and equipment</h2>
+    </div>
+
+    <div class="filter-bar" data-filter-bar="#program-grid .program-item">
+      <div class="filter-chip active" data-group="goal" data-value="all">All goals</div>
+      <div class="filter-chip" data-group="goal" data-value="weight_loss">Weight loss</div>
+      <div class="filter-chip" data-group="goal" data-value="strength">Strength</div>
+      <div class="filter-chip" data-group="goal" data-value="general_fitness">General fitness</div>
+      <div class="filter-chip" data-group="goal" data-value="mobility">Mobility &amp; balance</div>
+      <div class="filter-chip" data-group="goal" data-value="sport">Sport prep</div>
+    </div>
+
+    <div class="grid grid-4" id="program-grid">
+      <div class="card program-card program-item" data-goal="weight_loss">
+        <span class="tag orange">Beginner</span>
+        <h3>Full-Body Metabolic Foundations</h3>
+        <p class="small text-muted">Sustainable full-body resistance plus cardiorespiratory work for consistent weight management.</p>
+        <div class="meta"><span class="tag">30 min</span><span class="tag">3x/week</span><span class="tag">Dumbbells</span></div>
+        <div class="spacer"></div>
+        <a href="#" class="btn btn-secondary btn-sm btn-block">View schedule</a>
+      </div>
+      <div class="card program-card program-item" data-goal="strength">
+        <span class="tag orange">Intermediate</span>
+        <h3>Strength Foundations</h3>
+        <p class="text-muted small">Loadable compound movements, stable technique and progressive overload.</p>
+        <div class="meta"><span class="tag">40–45 min</span><span class="tag">4x/week</span><span class="tag">Dumbbells</span></div>
+        <div class="spacer"></div>
+        <a href="#" class="btn btn-secondary btn-sm btn-block">View schedule</a>
+      </div>
+      <div class="card program-card program-item" data-goal="general_fitness">
+        <span class="tag orange">All levels</span>
+        <h3>Balanced General Fitness</h3>
+        <p class="text-muted small">Movement patterns, cardio, mobility and recovery balanced across your week.</p>
+        <div class="meta"><span class="tag">30 min</span><span class="tag">3–4x/week</span><span class="tag">Any equipment</span></div>
+        <div class="spacer"></div>
+        <a href="#" class="btn btn-secondary btn-sm btn-block">View schedule</a>
+      </div>
+      <div class="card program-card program-item" data-goal="mobility">
+        <span class="tag orange">Beginner</span>
+        <h3>Balance &amp; Mobility Collection</h3>
+        <p class="text-muted small">Controlled range-of-motion and stability work for confident everyday movement.</p>
+        <div class="meta"><span class="tag">20 min</span><span class="tag">Daily</span><span class="tag">No equipment</span></div>
+        <div class="spacer"></div>
+        <a href="#" class="btn btn-secondary btn-sm btn-block">View schedule</a>
+      </div>
+      <div class="card program-card program-item" data-goal="mobility">
+        <span class="tag orange">All levels</span>
+        <h3>Home Mobility Reset</h3>
+        <p class="text-muted small">Short posture and mobility breaks you can fit between meetings.</p>
+        <div class="meta"><span class="tag">15 min</span><span class="tag">Daily</span><span class="tag">No equipment</span></div>
+        <div class="spacer"></div>
+        <a href="#" class="btn btn-secondary btn-sm btn-block">View schedule</a>
+      </div>
+      <div class="card program-card program-item" data-goal="sport">
+        <span class="tag orange">Advanced</span>
+        <h3>Event Prep Conditioning</h3>
+        <p class="text-muted small">Power, speed, agility and sport-conditioning that increases in specificity as your event nears.</p>
+        <div class="meta"><span class="tag">45–60 min</span><span class="tag">4–5x/week</span><span class="tag">Full gym</span></div>
+        <div class="spacer"></div>
+        <a href="#" class="btn btn-secondary btn-sm btn-block">View schedule</a>
+      </div>
+      <div class="card program-card program-item" data-goal="strength">
+        <span class="tag orange">Intermediate/Advanced</span>
+        <h3>Hypertrophy Builder</h3>
+        <p class="text-muted small">Loadable exercises, stable technique, adequate range of motion and manageable fatigue.</p>
+        <div class="meta"><span class="tag">45 min</span><span class="tag">4x/week</span><span class="tag">Full gym</span></div>
+        <div class="spacer"></div>
+        <a href="#" class="btn btn-secondary btn-sm btn-block">View schedule</a>
+      </div>
+      <div class="card program-card program-item" data-goal="weight_loss">
+        <span class="tag orange">All levels</span>
+        <h3>Home or Travel Circuit</h3>
+        <p class="text-muted small">Efficient compound and multi-purpose movements for short, limited-equipment sessions.</p>
+        <div class="meta"><span class="tag">20–25 min</span><span class="tag">Anywhere</span><span class="tag">Bodyweight/Bands</span></div>
+        <div class="spacer"></div>
+        <a href="#" class="btn btn-secondary btn-sm btn-block">View schedule</a>
+      </div>
+    </div>
+    <p class="small text-muted" data-empty-state style="display:none; margin-top:20px;">No programs match that filter yet — try "All goals" or check back soon.</p>
+  </div>
+</section>
+
+<!-- ============ EXERCISE LIBRARY ============ -->
+<section class="section section--alt" id="library">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Exercise library</span>
+      <h2>Filter by body area, equipment and difficulty</h2>
+      <p class="text-muted">Each exercise pairs a Be a Fitakha video with instructions, technique cues, muscles targeted, common mistakes, and easier/harder variations.</p>
+    </div>
+
+    <div data-filter-bar="#library-grid .video-card">
+      <p class="small text-muted" style="font-weight:600; margin-bottom:8px;">Body area</p>
+      <div class="filter-bar">
+        <div class="filter-chip active" data-group="body" data-value="all">All areas</div>
+        <div class="filter-chip" data-group="body" data-value="lower">Lower body</div>
+        <div class="filter-chip" data-group="body" data-value="upper">Upper body</div>
+        <div class="filter-chip" data-group="body" data-value="core">Core</div>
+        <div class="filter-chip" data-group="body" data-value="mobility">Mobility</div>
+      </div>
+      <p class="small text-muted" style="font-weight:600; margin:16px 0 8px;">Difficulty</p>
+      <div class="filter-bar">
+        <div class="filter-chip active" data-group="level" data-value="all">All levels</div>
+        <div class="filter-chip" data-group="level" data-value="beginner">Beginner</div>
+        <div class="filter-chip" data-group="level" data-value="intermediate">Intermediate</div>
+        <div class="filter-chip" data-group="level" data-value="advanced">Advanced</div>
+      </div>
+    </div>
+
+    <div class="grid grid-4" id="library-grid">
+      <div class="card video-card" data-body="lower" data-level="beginner">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Bodyweight Squat</h3><p class="small text-muted">Lower body · Beginner · No equipment</p></div>
+      </div>
+      <div class="card video-card" data-body="lower" data-level="beginner">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Goblet Squat</h3><p class="small text-muted">Lower body · Beginner · Dumbbell/Kettlebell</p></div>
+      </div>
+      <div class="card video-card" data-body="lower" data-level="intermediate">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Bulgarian Split Squat</h3><p class="small text-muted">Lower body · Intermediate · Dumbbells</p></div>
+      </div>
+      <div class="card video-card" data-body="lower" data-level="intermediate">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Dumbbell Romanian Deadlift</h3><p class="small text-muted">Lower body · Intermediate · Dumbbells</p></div>
+      </div>
+      <div class="card video-card" data-body="upper" data-level="beginner">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Incline Push-Up</h3><p class="small text-muted">Upper body · Beginner · No equipment</p></div>
+      </div>
+      <div class="card video-card" data-body="upper" data-level="intermediate">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>One-Arm Dumbbell Row</h3><p class="small text-muted">Upper body · Intermediate · Dumbbell</p></div>
+      </div>
+      <div class="card video-card" data-body="upper" data-level="advanced">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Barbell Bench Press</h3><p class="small text-muted">Upper body · Advanced · Barbell</p></div>
+      </div>
+      <div class="card video-card" data-body="core" data-level="beginner">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Dead Bug</h3><p class="small text-muted">Core · Beginner · No equipment</p></div>
+      </div>
+      <div class="card video-card" data-body="core" data-level="intermediate">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Standing Pallof Press</h3><p class="small text-muted">Core · Intermediate · Resistance band</p></div>
+      </div>
+      <div class="card video-card" data-body="mobility" data-level="beginner">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Desk-Break Mobility Flow</h3><p class="small text-muted">Mobility · Beginner · No equipment</p></div>
+      </div>
+      <div class="card video-card" data-body="mobility" data-level="beginner">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Supported Single-Leg Balance</h3><p class="small text-muted">Mobility · Beginner · Chair or wall</p></div>
+      </div>
+      <div class="card video-card" data-body="mobility" data-level="intermediate">
+        <div class="video-thumb"><div class="play">▶</div></div>
+        <div class="body"><h3>Band Lateral Walk</h3><p class="small text-muted">Mobility · Intermediate · Resistance band</p></div>
+      </div>
+    </div>
+    <p class="small text-muted" data-empty-state style="display:none; margin-top:20px;">No exercises match that combination yet — try widening your filters.</p>
+    <div class="text-center" style="margin-top:28px;">
+      <a href="https://www.youtube.com/@BeAFitakha" target="_blank" rel="noopener" class="btn btn-secondary">Watch more on the Be a Fitakha channel</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GUIDES & FAQS ============ -->
+<section class="section" id="faqs">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Guides &amp; FAQs</span>
+      <h2>Practical answers, organized by topic</h2>
+    </div>
+
+    <div class="grid grid-2" style="max-width:920px; margin:0 auto; gap:36px;">
+      <div>
+        <h3 style="margin-bottom:16px;">Getting started</h3>
+        <div class="accordion-group">
+          <div class="accordion-item">
+            <button class="accordion-trigger">How do I know which program is right for me?<span class="chevron">+</span></button>
+            <div class="accordion-panel"><p>Take the <a href="find-your-fit.html">Find Your Fit</a> questionnaire — it matches a program to your goal, experience, equipment and time in about two minutes, with no account required.</p></div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">Do I need equipment to start?<span class="chevron">+</span></button>
+            <div class="accordion-panel"><p>No. Several programs and exercises use bodyweight only. Filter the exercise library by "No equipment" to see them all.</p></div>
+          </div>
+        </div>
+
+        <h3 style="margin:28px 0 16px;">Technique, posture &amp; movement</h3>
+        <div class="accordion-group">
+          <div class="accordion-item">
+            <button class="accordion-trigger">Is the posture content a diagnosis?<span class="chevron">+</span></button>
+            <div class="accordion-panel"><p>No — Fitakha treats posture content as education and guided observation rather than a diagnostic tool. Pain, dizziness, recent surgery or similar concerns route you to a professional-review step instead of an automated plan.</p></div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">What if I can't tell whether my form is correct?<span class="chevron">+</span></button>
+            <div class="accordion-panel"><p>Every exercise page lists setup, execution cues and common mistakes. If you're still unsure, a coach can review your technique directly.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:16px;">Progression</h3>
+        <div class="accordion-group">
+          <div class="accordion-item">
+            <button class="accordion-trigger">How does Fitakha decide when to progress an exercise?<span class="chevron">+</span></button>
+            <div class="accordion-panel"><p>We build consistency first, then gradually increase repetitions, resistance or session length as your performance and recovery allow — for example, bodyweight squat → goblet squat → barbell squat.</p></div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">Why was a harder exercise excluded from my plan?<span class="chevron">+</span></button>
+            <div class="accordion-panel"><p>High-complexity movements are held back for never-exercised users unless a coach selects them — this keeps early sessions safe and achievable.</p></div>
+          </div>
+        </div>
+
+        <h3 style="margin:28px 0 16px;">Recovery &amp; using Fitakha</h3>
+        <div class="accordion-group">
+          <div class="accordion-item">
+            <button class="accordion-trigger">What happens if I report low readiness or poor sleep?<span class="chevron">+</span></button>
+            <div class="accordion-panel"><p>Fitakha reduces session intensity and volume and favors technique, mobility or recovery work when readiness is low — the same logic a careful coach would apply.</p></div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">Can a coach override a Fitakha recommendation?<span class="chevron">+</span></button>
+            <div class="accordion-panel"><p>Yes, where our policy allows a coach override. The original trigger, warning, decision, reason and final choice are always recorded for accountability.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/fitakha-logo.jpg" alt="Fitakha">
+        <p class="small">Ignite What Moves You. Fitness that starts with you — programs, exercises and real support, personalized to your life.</p>
+      </div>
+      <div><h4>Explore</h4>
+        <a href="find-your-fit.html">Find Your Fit</a>
+        <a href="workouts.html#programs">Programs</a>
+        <a href="workouts.html#library">Exercise Library</a>
+        <a href="workouts.html#faqs">FAQs</a>
+      </div>
+      <div><h4>Support</h4>
+        <a href="find-an-expert.html">Coaches</a>
+        <a href="find-an-expert.html">Nutritionists</a>
+        <a href="find-an-expert.html#join">Join as an Expert</a>
+      </div>
+      <div><h4>Company</h4>
+        <a href="about.html">About Fitakha</a>
+        <a href="about.html#team">Our Team</a>
+        <a href="shop.html">Shop</a>
+      </div>
+      <div><h4>Get in touch</h4>
+        <a href="contact.html">Contact Us</a>
+        <a href="https://www.youtube.com/@BeAFitakha" target="_blank" rel="noopener">Be a Fitakha (YouTube)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Fitakha. All rights reserved.</span>
+      <span>Fitakha provides fitness education and guidance; it is not a substitute for professional medical advice.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
