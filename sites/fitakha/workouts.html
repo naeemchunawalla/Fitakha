@@ -25,6 +25,7 @@
       <a href="contact.html">Contact</a>
     </nav>
     <div class="nav-cta">
+      <a href="account.html" class="small" style="font-weight:600; white-space:nowrap;">Log in / Register</a>
       <a href="find-your-fit.html" class="btn btn-secondary btn-sm">Find Your Fit</a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -210,6 +211,39 @@
   </div>
 </section>
 
+<!-- ============ SMART FITAKHA DAILY QUIZ ============ -->
+<section class="section section--alt" id="smart">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Learn a little. Move smarter.</span>
+      <h2>The Smart Fitakha daily challenge</h2>
+      <p class="text-muted">Five questions. Fresh perspectives on fitness foundations, nutrition and everyday wellbeing. Learn why each answer matters.</p>
+    </div>
+    <div class="grid grid-2" style="max-width:920px; margin:0 auto;">
+      <div class="card">
+        <span class="tag" id="quiz-date"></span>
+        <div id="trivia" aria-live="polite" style="margin-top:14px;"></div>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Knowledge deserves a little spotlight</span>
+        <h3>Smart Fitakha honours</h3>
+        <p class="small text-muted">Daily curiosity. Lasting knowledge.</p>
+        <div id="personal-stats"></div>
+        <p class="small text-muted" style="margin-top:14px;"><strong>Of the day</strong> · Highest daily score<br><strong>Of the week</strong> · Most points Monday–Sunday<br><strong>Of the month</strong> · Most points in the calendar month</p>
+        <span class="tag orange">Community winners coming soon</span>
+        <p class="small text-muted" style="margin-top:10px;">Try the quiz as a guest. Progress stays in this browser. Verified rankings and winner announcements will launch with accounts and shared score tracking. No community winners have been selected yet.</p>
+        <div class="accordion-group">
+          <div class="accordion-item">
+            <button class="accordion-trigger">How scoring will work<span class="chevron">+</span></button>
+            <div class="accordion-panel"><p>10 points per correct answer, up to 50 daily. Only the first completed daily attempt counts. Practice is always welcome. Tied top scores share the honour. Competition dates use America/New_York time.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="small text-muted text-center" style="margin-top:20px;">General education for adults, not individual medical or nutrition advice. A rotating starter question bank is included; topics repeat as you practise.</p>
+  </div>
+</section>
+
 <!-- ============ GUIDES & FAQS ============ -->
 <section class="section" id="faqs">
   <div class="container">
@@ -285,6 +319,8 @@
         <a href="find-your-fit.html">Find Your Fit</a>
         <a href="workouts.html#programs">Programs</a>
         <a href="workouts.html#library">Exercise Library</a>
+        <a href="posture-check.html">Posture Self-Check</a>
+        <a href="workouts.html#smart">Daily Quiz</a>
         <a href="workouts.html#faqs">FAQs</a>
       </div>
       <div><h4>Support</h4>
@@ -296,6 +332,7 @@
         <a href="about.html">About Fitakha</a>
         <a href="about.html#team">Our Team</a>
         <a href="shop.html">Shop</a>
+        <a href="account.html">Log in / Register</a>
       </div>
       <div><h4>Get in touch</h4>
         <a href="contact.html">Contact Us</a>
@@ -310,5 +347,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/trivia.js"></script>
 </body>
 </html>

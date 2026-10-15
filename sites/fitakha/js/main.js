@@ -245,6 +245,8 @@ function initFindYourFit() {
       '<div class="result-list">' +
       '<div class="item"><div><strong>Suggested program</strong><div class="small text-muted">' + program.name + " &middot; matched to your equipment and time</div></div>" +
       '<a class="btn btn-secondary btn-sm" href="workouts.html#programs">View programs</a></div>' +
+      '<div class="item"><div><strong>Posture &amp; movement self-check</strong><div class="small text-muted">Optional next step — health history, then guided observation</div></div>' +
+      '<a class="btn btn-secondary btn-sm" href="posture-check.html">Start self-check</a></div>' +
       '<div class="item"><div><strong>Relevant exercise videos</strong><div class="small text-muted">Follow-along demonstrations from the Be a Fitakha channel</div></div>' +
       '<a class="btn btn-secondary btn-sm" href="workouts.html#library">Explore library</a></div>' +
       '<div class="item"><div><strong>Helpful FAQs</strong><div class="small text-muted">Getting started, technique and recovery answers</div></div>' +
