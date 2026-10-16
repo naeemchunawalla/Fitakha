@@ -1,0 +1,36 @@
+/* White and cool blue-gray surfaces across the Fitakha experience. */
+:root{--ink:#173149;--green:#285f87;--lime:#dcecf7;--cream:#fff;--muted:#526677;--orange:#d76742}
+body,nav,footer{background:#fff}nav{border-color:#dce5ec}
+main>section{background:#fff}
+main>.story,main>.team,main>#smart,main>#experts,main>.closing{background:#edf3f8!important;color:var(--ink)}
+.strip{background:#e4edf5;color:var(--ink)}.strip span:before{color:var(--green)}
+.story-quote{color:var(--ink)}.pillar,.person,.partners,details{border-color:#cbd9e4}
+.path{background:#fff;border-color:#d5e0e9}.path:hover{background:#f0f5fa}
+.path .num{color:#5b7286}.offer{border:1px solid #dae4ed;background:#fff}
+.offer.business{background:#edf3f8;color:var(--ink)}.business p,.business ul{color:var(--muted)}
+.flow{border-color:#cbd9e4;color:#285f87}.music{background:#e4edf5;color:var(--ink)}.music p{color:var(--muted)}
+.merch,.video-image{background:#eaf0f5}.closing p{color:var(--muted)}
+.initial{background:#dce8f2;color:var(--ink)}#result{background:#edf3f8}
+.btn.light{background:#dcecf7}.btn.outline{border-color:#a9bdce}
+.visual-option{border-color:#c5d6e3}.visual-option[aria-pressed="true"]{background:#e4eff7}
+.selfcheck fieldset{border-color:#ccdbe6}.selfcheck label.posture-choice{background:#fff;border-color:#ccdbe6}
+.selfcheck label.posture-choice:has(input:checked){background:#e4eff7}
+
+.team-carousel{max-width:980px;margin:0 auto}
+.people{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;align-items:stretch;scrollbar-width:thin;scrollbar-color:#b9cfdf transparent;padding:4px 0 14px}
+.people>.person{flex:0 0 100%;min-width:0;box-sizing:border-box;scroll-snap-align:start;display:grid;grid-template-columns:140px minmax(0,1fr);gap:26px;padding:28px;border:1px solid #d5e0e9;border-radius:12px;background:#fff;align-content:start;align-items:start}
+.people>.founder-card{grid-template-rows:auto auto 1fr;column-gap:26px;row-gap:8px}
+.founder-card .initial{grid-column:1;grid-row:1/4;width:140px;height:150px;border-radius:10px;font-size:38px; margin:0}
+.founder-card h3,.founder-card .role,.founder-card p{grid-column:2;margin:0}
+.founder-card h3,.profile-copy h3{font-size:26px;margin:0 0 8px}
+.team-photo{display:block;width:140px;height:175px;object-fit:cover;object-position:center;border-radius:10px;background:#e3ebf2}
+.profile-copy{padding:0;min-width:0}.profile-copy .role,.founder-card .role{font-weight:700;font-size:14px}
+.profile-copy p,.founder-card p{font-size:15px;line-height:1.75;margin-top:16px}
+.team-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:20px}
+.team-dots{display:flex;align-items:center;gap:4px}.team-dot{width:36px;height:36px;padding:0;border:0;background:transparent;display:grid;place-items:center;border-radius:50%;cursor:pointer}
+.team-dot:before{content:'';width:9px;height:9px;border-radius:50%;background:#a8becf;transition:width .2s}
+.team-dot[aria-current="true"]:before{background:#28659a;width:24px;border-radius:8px}
+.team-arrow{width:42px;height:42px;border:1px solid #b6cad9;border-radius:50%;background:#fff;color:#28659a;font-size:22px}.team-arrow:disabled{opacity:.35;cursor:default}
+.team-position{text-align:center;margin:8px 0 0}.people:focus-visible{outline:3px solid #28659a;outline-offset:4px}
+@media(max-width:600px){.people>.person{grid-template-columns:1fr;gap:16px;padding:22px}.team-photo{width:108px;height:135px}.founder-card .initial{width:108px;height:135px;grid-column:1;grid-row:auto}.founder-card h3,.founder-card .role,.founder-card p{grid-column:1}.profile-copy h3,.founder-card h3{font-size:24px}.profile-copy p{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.people{scroll-behavior:auto}.team-dot:before{transition:none}}
